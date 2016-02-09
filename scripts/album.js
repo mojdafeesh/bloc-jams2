@@ -127,8 +127,8 @@ var setCurrentAlbum = function(album) {
      }
  };
 
-var songListContainer = document.getElementsByClassName('album-view-song-list')[0];
-var songRows = document.getElementsByClassName('album-view-song-item');
+//var songListContainer = document.getElementsByClassName('album-view-song-list')[0];
+//var songRows = document.getElementsByClassName('album-view-song-item');
 
 // Album button templates
 var playButtonTemplate = '<a class="album-song-button"><span class="ion-play"></span></a>';
@@ -156,11 +156,11 @@ var currentlyPlayingSong = null;
          currentlyPlayingSongElement.innerHTML = currentlyPlayingSongElement.getAttribute('data-song-number');
          songItem.innerHTML = pauseButtonTemplate;
          currentlyPlayingSong = songItem.getAttribute('data-song-number');
-     }*/
+     }
       
   };    
 
- /* songListContainer.addEventListener('mouseover', function(event) {
+  songListContainer.addEventListener('mouseover', function(event) {
        // Only target individual song rows during event delegation
          if (event.target.parentElement.className === 'album-view-song-item') {
              
@@ -175,10 +175,10 @@ var currentlyPlayingSong = null;
          // #1 Mouse over the table, and the element where the event is dispatched will be logged to the console.
         //console.log(event.target);
         }
-  }); */   
+  });  
     
    for (i = 0; i < songRows.length; i++) {
-        /* songRows[i].addEventListener('mouseleave', function(event) {
+         songRows[i].addEventListener('mouseleave', function(event) {
              // Revert the content back to the number
              // Selects first child element, which is the song-item-number element
              //this.children[0].innerHTML = this.children[0].getAttribute('data-song-number');
@@ -191,15 +191,16 @@ var currentlyPlayingSong = null;
                  songItem.innerHTML = songItemNumber;
              }
 
-         });*/
+         });
     
     
          songRows[i].addEventListener('click', function(event) {
              // Event handler call
             clickHandler(event.target);
          });
-     }
+     }*/
  });
+
   var index = 0;
   var albumImage = document.getElementsByClassName('album-cover-art')[0];
   var albums = [albumMarconi, albumPicasso, albumAdele];

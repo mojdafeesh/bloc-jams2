@@ -130,15 +130,38 @@ var setCurrentAlbum = function(album) {
 
 var updateSeekBarWhileSongPlays = function() {
    if (currentSoundFile) {
-       // #10
+
        currentSoundFile.bind('timeupdate', function(event) {
-           // #11
+
            var seekBarFillRatio = this.getTime() / this.getDuration();
            var $seekBar = $('.seek-control .seek-bar');
 
            updateSeekPercentage($seekBar, seekBarFillRatio);
+
+           setCurrentTimeInPlayerBar( this.getTime() );
+           setTotalTimeInPlayerBar( this.getDuration() );
+
        });
+
    }
+};
+
+var setCurrentTimeInPlayerBar = function(currentTime){
+  $('.current-time').text(filterTimeCode(currentTime));
+};
+
+var setTotalTimeInPlayerBar = function(totalTime){
+  $('.total-time').text(filterTimeCode(totalTime));
+};
+
+var filterTimeCode = function(timeInSeconds){
+
+  var timeInSecondsParsed = parseFloat( timeInSeconds );
+  var minutes = Math.floor( timeInSecondsParsed / 60 );
+  var seconds = Math.floor( timeInSeconds - minutes * 60);
+
+  return minutes + ':' + ('0' + seconds).slice(-2);
+
 };
 
 // Method to update the seek bars

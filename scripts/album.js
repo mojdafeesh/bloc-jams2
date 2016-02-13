@@ -209,6 +209,39 @@ var updatePlayerBarSong = function(){
 
 };
 
+var togglePlayFromPlayerBar = function(){
+
+  // If a song is paused and the play button is clicked in the player bar, it will...
+  if ( currentSoundFile.isPaused() ){
+
+    // Change the song number cell from a play button to a pause button
+
+    currentlyPlayingCell = getSongNumberCell(currentlyPlayingSongNumber);
+    currentlyPlayingCell.html(pauseButtonTemplate);
+
+    // Change the HTML of the player bar's play button to a pause button
+    $('.main-controls .play-pause').html(playerBarPauseButton);
+
+    // Play the song
+    currentSoundFile.play();
+
+  // If the song is already playing
+  } else if ( currentSoundFile ) {
+
+    // Change the song number cell from a pause button to a play button
+    currentlyPlayingCell = getSongNumberCell(currentlyPlayingSongNumber);
+    currentlyPlayingCell.html(playButtonTemplate);
+
+    // Change the HTML of the player bar's pause button to a play button
+    $('.main-controls .play-pause').html(playerBarPlayButton);
+
+    // Pause the song
+    currentSoundFile.pause();
+
+  }
+
+};
+
 // Combining instances of repeating variables
 var setSong = function(songNumber){
 
@@ -259,6 +292,7 @@ var currentVolume = 80;
 
 var $previousButton = $('.main-controls .previous');
 var $nextButton = $('.main-controls .next');
+var $mainControlPlayPause = $('.main-controls .play-pause');
 
 $(document).ready( function() {
 
@@ -266,5 +300,7 @@ $(document).ready( function() {
 
   $previousButton.click(previousSong);
   $nextButton.click(nextSong);
+
+  $mainControlPlayPause.click(togglePlayFromPlayerBar);
 
 });
